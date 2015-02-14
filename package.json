@@ -3,8 +3,7 @@
   "devDependencies": {
     "6to5ify": "^4",
     "browserify": "~> 6.3",
-    "browserify-incremental": "^1.4.0",
-    "react": "^0.13.0-beta.1"
+    "browserify-incremental": "^1.4.0"
   },
   "license": "MIT",
   "engines": {

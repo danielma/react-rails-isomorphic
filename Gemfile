@@ -14,9 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 
 # Front end gems
-gem 'sprockets-es6', '~> 0.3'
-gem "browserify-rails", github: 'danielma/browserify-rails'
-gem '6to5'
+gem "browserify-rails"
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 
 # Use jquery as the JavaScript library
