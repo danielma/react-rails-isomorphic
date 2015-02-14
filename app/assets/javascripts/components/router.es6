@@ -1,5 +1,7 @@
-var Index = Index || require('./index');
-var Nerp  = Nerp  || require('./nerp');
+if (typeof require !== 'undefined') {
+  var Index = require('./index');
+  var Nerp  = require('./nerp');
+}
 
 class Router extends React.Component {
   render() {

@@ -2,4 +2,4 @@
 //= require routes
 //= require_tree ./components
 
-module  = typeof module  === 'undefined' ? {}            : module;
+module = typeof module === 'undefined' ? {} : module;
