@@ -15,12 +15,9 @@ gem 'therubyracer', platforms: :ruby
 
 # Front end gems
 gem 'sprockets-es6', '~> 0.3'
+gem "browserify-rails", github: 'danielma/browserify-rails'
 gem '6to5'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-react-router'
-end
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -41,9 +38,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'

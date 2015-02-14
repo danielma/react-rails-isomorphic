@@ -1,0 +1,13 @@
+{
+  "name": "react-playground",
+  "devDependencies": {
+    "6to5ify": "^4.1.1",
+    "browserify": "~> 6.3",
+    "browserify-incremental": "^1.4.0",
+    "react": "^0.13.0-beta.1"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  }
+}

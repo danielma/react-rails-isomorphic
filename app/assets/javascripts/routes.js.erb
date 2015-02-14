@@ -1,0 +1,1 @@
+routes = <%= Rails.application.routes.routes.map { |r| r.path.spec.to_s }.to_json %>
