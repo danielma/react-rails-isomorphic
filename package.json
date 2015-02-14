@@ -9,5 +9,9 @@
   "license": "MIT",
   "engines": {
     "node": ">= 0.10"
+  },
+  "dependencies": {
+    "bulk-require": "^0.2.1",
+    "bulkify": "^1.1.1"
   }
 }

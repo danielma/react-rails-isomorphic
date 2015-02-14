@@ -3,7 +3,7 @@ var Nerp = React.createClass({
     return {message: 'nerp'};
   },
   handleClick() {
-    this.setState({message: 'Clicked!'})
+    this.setState({message: (new Date()).toString()})
   },
   render() {
     return (

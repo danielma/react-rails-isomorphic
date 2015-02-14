@@ -1,23 +1,21 @@
-if (typeof require !== 'undefined') {
-  var Index = require('./index');
-  var Nerp  = require('./nerp');
-}
+var bulk_require = require('bulk-require');
+var components = bulk_require(__dirname, ['./*']);
 
-class Router extends React.Component {
+var Router = React.createClass({
   render() {
     var location = this.props.location || window.location.pathname;
     var Route;
 
     if (location == routes[1]) {
-      Route = Index;
+      Route = components.index;
     } else {
-      Route = Nerp;
+      Route = components.nerp;
     }
 
     return (
       <Route />
     );
   }
-};
+});
 
 module.exports = Router;
