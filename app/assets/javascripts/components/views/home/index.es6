@@ -1,7 +1,13 @@
 var Index = React.createClass({
+  getInitialState() {
+    return {message: 'blue'};
+  },
+  handleClick() {
+    this.setState({message: (new Date()).toString()});
+  },
   render() {
     return (
-      <h1>You are home controller</h1>
+      <h1 onClick={this.handleClick}>You are home controller: {this.state.message}</h1>
     );
   }
 });

@@ -37,6 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   gem 'better_errors'
+  gem 'awesome_print'
   gem 'binding_of_caller'
   gem 'quiet_assets'
 
