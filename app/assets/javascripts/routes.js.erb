@@ -8,11 +8,17 @@ Rails.application.routes.routes.find_all {|r|
   }
 }.to_json %>
 
-function getRoute(location) {
+var getRoute = function(location) {
   var foundRoute = null;
-  routes.forEach(function(route) {
+  routes.some(function(route) {
     if (route.format === location) {
       foundRoute = route.location;
+      return true;
+    }
+    var r = new RegExp(route.format.split(/:[^\/]+/).join("[^\/]+") + "$");
+    if (location.match(r)) {
+      foundRoute = route.location;
+      return true;
     }
   });
   return foundRoute;
