@@ -12,9 +12,9 @@ var Router = React.createClass({
     $('body').on('click', 'a', this.clickHandler);
   },
   clickHandler(e) {
-    var element = $(e.target);
-    this.setState({
-      location: element.attr('href')
+    var href = e.target.href;
+    this.setState({location: href}, function() {
+      history.pushState(null, null, href);
     });
     return false;
   },
