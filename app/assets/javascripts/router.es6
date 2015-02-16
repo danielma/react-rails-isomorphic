@@ -19,10 +19,14 @@ var Router = React.createClass({
     $('body').on('click', 'a', this.clickHandler);
   },
   clickHandler(e) {
-    var href = e.target.href;
-    history.pushState(null, null, href);
-    this.setState({location: href});
-    return false;
+    var link = url.parse(e.target.href);
+    var location = url.parse(window.location.href);
+    if (link.host === location.host) {
+      var newLocation = link.path;
+      history.pushState(null, null, newLocation);
+      this.setState({location: newLocation});
+      return false;
+    };
   },
   render() {
     var foundRoute = getRoute(this.state.location);
