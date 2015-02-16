@@ -1,5 +1,3 @@
-var nerp = <%= '"yeah"' %>;
-
 var routes = <%=
 fragment = /[^\/]+/
 part = /:(#{fragment})/
@@ -10,17 +8,21 @@ Rails.application.routes.routes.find_all {|r|
   matches = route.scan(part).flatten
   regex = route.split(/:#{fragment}/, -1).join('([^\/]+)') + '$'
   {
-    regex:    regex,
-    matches:  matches,
-    view: r.defaults
+    regex:   regex,
+    matches: matches,
+    params:  {},
+    view:    r.defaults
   }
 }.to_json %>
 
 var getRoute = function(location) {
-  var r,
+  var match,
       foundRoute = null;
   routes.some(function(route) {
-    if (location.match(route.regex)) {
+    if (match = location.match(route.regex)) {
+      route.matches.forEach(function(fragment, index) {
+        route.params[fragment] = match[index + 1];
+      });
       foundRoute = route;
       return true;
     }

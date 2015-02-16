@@ -5,12 +5,19 @@ var Router = React.createClass({
   render() {
     var location = this.props.location || window.location.pathname;
     var foundRoute = getRoute(location);
-    var routeView = foundRoute ? views[foundRoute.view.controller][foundRoute.view.action] : views.notFound;
+    var routeView, params;
 
+    if (foundRoute) {
+      routeView = views[foundRoute.view.controller][foundRoute.view.action];
+      params = foundRoute.params;
+    } else {
+      routeView = views.notFound;
+      params    = {};
+    }
     var Route = routeView;
 
     return (
-      <Route />
+      <Route params={params} />
     );
   }
 });
