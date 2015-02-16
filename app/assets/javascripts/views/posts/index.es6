@@ -3,8 +3,17 @@ var Post = require('./post')
 var Index = React.createClass({
   getInitialState() {
     return {
-      posts: this.props.posts || {}
+      posts: this.props.posts || []
     };
+  },
+  componentDidMount() {
+    if (this.state.posts.length != 0) return;
+
+    $.getJSON('/posts', function(posts) {
+      if (this.isMounted()) {
+        this.setState({posts: posts});
+      }
+    }.bind(this));
   },
   render() {
     var posts = this.state.posts.map(function(post) {

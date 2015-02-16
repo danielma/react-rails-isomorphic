@@ -4,8 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-    @props = { posts: @posts }
+    posts = Post.all
+    @props = { posts: posts }
+
+    respond_to do |format|
+      format.html
+      format.json { render json: posts }
+    end
   end
 
   # GET /posts/1
