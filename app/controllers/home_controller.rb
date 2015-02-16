@@ -1,8 +1,10 @@
 class HomeController < ApplicationController
   def index
+    @props = {
+      yooloo: 'mcdoogerson'
+    }
   end
 
   def show
-    render text: '', layout: 'application'
   end
 end

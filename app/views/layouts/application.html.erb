@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<%= react_component 'Router', {location: request.fullpath}, {prerender: true} %>
+<%= react_component 'Router', {location: request.fullpath, params: @props}, {prerender: true} %>
 
 </body>
 </html>
