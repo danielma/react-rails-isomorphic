@@ -16,6 +16,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @props = { post: @post }
   end
 
   # GET /posts/new

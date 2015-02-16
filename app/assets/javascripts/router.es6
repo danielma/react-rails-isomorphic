@@ -2,9 +2,24 @@ var bulk_require = require('bulk-require');
 var views = bulk_require(__dirname + '/views', ['./**/*.es6']);
 
 var Router = React.createClass({
+  getInitialState() {
+    return {location: this.props.location || window.location.pathname};
+  },
+  componentDidMount() {
+    this.registerClickHandler();
+  },
+  registerClickHandler() {
+    $('body').on('click', 'a', this.clickHandler);
+  },
+  clickHandler(e) {
+    var element = $(e.target);
+    this.setState({
+      location: element.attr('href')
+    });
+    return false;
+  },
   render() {
-    var location = this.props.location || window.location.pathname;
-    var foundRoute = getRoute(location);
+    var foundRoute = getRoute(this.state.location);
     var routeView, params;
 
     if (foundRoute) {
