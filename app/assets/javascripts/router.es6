@@ -7,6 +7,10 @@ var Router = React.createClass({
   },
   componentDidMount() {
     this.registerClickHandler();
+    window.addEventListener('popstate', this.backHandler);
+  },
+  backHandler() {
+    this.setState({location: window.location.pathname});
   },
   registerClickHandler() {
     $('body').on('click', 'a', this.clickHandler);
