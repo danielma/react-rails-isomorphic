@@ -1,23 +1,27 @@
+var nerp = <%= '"yeah"' %>;
+
 var routes = <%=
+fragment = /[^\/]+/
+part = /:(#{fragment})/
 Rails.application.routes.routes.find_all {|r|
   r.constraints[:request_method] && r.constraints[:request_method] == /^GET$/
 }.map {|r|
+  route = r.path.spec.to_s.sub("(.:format)", "")
+  matches = route.scan(part).flatten
+  regex = route.split(/:#{fragment}/, -1).join('([^\/]+)') + '$'
   {
-    format: r.path.spec.to_s.sub("(.:format)", ""),
-    location: r.defaults
+    regex:    regex,
+    matches:  matches,
+    view: r.defaults
   }
 }.to_json %>
 
 var getRoute = function(location) {
-  var foundRoute = null;
+  var r,
+      foundRoute = null;
   routes.some(function(route) {
-    if (route.format === location) {
-      foundRoute = route.location;
-      return true;
-    }
-    var r = new RegExp(route.format.split(/:[^\/]+/).join("[^\/]+") + "$");
-    if (location.match(r)) {
-      foundRoute = route.location;
+    if (location.match(route.regex)) {
+      foundRoute = route;
       return true;
     }
   });

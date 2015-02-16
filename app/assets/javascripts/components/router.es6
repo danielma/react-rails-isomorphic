@@ -4,10 +4,10 @@ var views = bulk_require(__dirname + '/views', ['./**/*.es6']);
 var Router = React.createClass({
   render() {
     var location = this.props.location || window.location.pathname;
-    var Route;
     var foundRoute = getRoute(location);
+    var routeView = foundRoute ? views[foundRoute.view.controller][foundRoute.view.action] : views.notFound;
 
-    Route = views[foundRoute.controller][foundRoute.action];
+    var Route = routeView;
 
     return (
       <Route />
