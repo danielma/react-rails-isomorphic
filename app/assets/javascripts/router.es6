@@ -17,9 +17,8 @@ var Router = React.createClass({
   },
   clickHandler(e) {
     var href = e.target.href;
-    this.setState({location: href}, function() {
-      history.pushState(null, null, href);
-    });
+    history.pushState(null, null, href);
+    this.setState({location: href});
     return false;
   },
   render() {
