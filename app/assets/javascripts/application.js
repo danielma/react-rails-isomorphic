@@ -4,5 +4,5 @@
 //= require routes
 //= require_self
 
-global.Router = require('./components/router');
+global.Router = require('./router');
 global.ReactPlayground = {};
