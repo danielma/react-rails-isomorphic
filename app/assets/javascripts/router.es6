@@ -17,7 +17,7 @@ var Router = React.createClass({
     var Route = routeView;
 
     return (
-      <Route params={params} />
+      <Route params={params} {...this.props} />
     );
   }
 });
