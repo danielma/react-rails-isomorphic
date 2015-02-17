@@ -23,8 +23,8 @@ module ReactPlayground
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.browserify_rails.commandline_options = "-t 6to5ify --extension=.es6 -t bulkify"
-    #config.browserify_rails.paths = [/application\.js/]
+    config.browserify_rails.commandline_options = "-t [ babelify --playground ] --extension=.es6 -t bulkify"
+
     initializer "react_rails.add_watchable_files" do |app|
       app.config.watchable_files.concat Dir["#{app.root}/app/assets/javascripts/**/*.es6*"]
     end

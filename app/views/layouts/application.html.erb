@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<%= react_component 'Router', {location: request.fullpath}.merge(@props || {}), {prerender: true} %>
+<%= react_component 'Router', {location: request.fullpath}.merge(@props || {}), {prerender: false} %>
 
 </body>
 </html>

@@ -1,15 +1,20 @@
 var bulk_require = require('bulk-require');
-var views = bulk_require(__dirname + '/views', ['./**/*.es6']);
-var Header = views.layouts.header;
-var Footer = views.layouts.footer;
-var App    = require('app');
-var url = require('url');
+var views        = bulk_require(__dirname + '/views', ['./**/*.es6']);
+var Header       = views.layouts.header;
+var Content      = views.layouts.content;
+var Footer       = views.layouts.footer;
+var App          = require('app');
+var url          = require('url');
 
 var Router = React.createClass({
   getInitialState() {
     return {location: this.props.location || window.location.pathname};
   },
   componentDidMount() {
+    this.registerEventHandlers();
+    App.init();
+  },
+  registerEventHandlers() {
     this.registerClickHandler();
     window.addEventListener('popstate', this.backHandler);
   },
@@ -44,9 +49,10 @@ var Router = React.createClass({
 
     return (
       <div className='app'>
-        <App />
         <Header />
-        <Route params={params} {...this.props} />
+        <Content>
+          <Route params={params} {...this.props} />
+        </Content>
         <Footer />
       </div>
     );

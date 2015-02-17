@@ -4,17 +4,14 @@ if (window) {
   Cookies = require('cookies-js');
 }
 
-var App = React.createClass({
-  componentDidMount() {
+var App = {
+  init() {
     $.ajaxSetup({
       headers: {
         'X-CSRF-Token': Cookies.get('CSRF-TOKEN')
       }
     });
-  },
-  render() {
-    return false;
   }
-});
+};
 
 module.exports = App;

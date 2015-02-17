@@ -1,46 +1,39 @@
 var Post = require('models/post');
+var Input = require('react-bootstrap').Input;
+var GenericForm = require('components/genericForm');
 
 var Form = React.createClass({
-  defaultAction: '/posts',
-  modelName: 'post',
-
-  getInitialState() {
-    return {};
+  getDefaultProps() {
+    return {
+      action: '/posts'
+    };
   },
 
-  fieldToInput(field) {
-    var name = `${this.modelName}[${field}]`;
-    return (
-      <p>
-        <input type="text" key={name} name={name} value={this.state[field]} onChange={this.onFieldChange.bind(this, field)} placeholder={field} />
-      </p>
-    );
-  },
-
-  onFieldChange(field, event) {
+  setFieldValue(field, event) {
     var newState = {};
     newState[field] = event.target.value;
     this.setState(newState);
   },
 
-  handleSubmit(e) {
-    $.post(e.target.action, {post: this.state}, function(response) {
-      console.log(response);
-    });
-    return false;
+  getInitialState() {
+    return this.props.post || {};
+  },
+
+  handleSuccess(data) {
+    console.log(data);
   },
 
   render() {
-    var action = this.props.action || this.defaultAction;
-    var fields = ['title', 'source'].map(this.fieldToInput);
+    var action = this.props.action;
     return (
-      <form action={action} onSubmit={this.handleSubmit} method='post'>
-        {fields}
+      <GenericForm model='post' action={action} onSuccess={this.handleSuccess} method='post'>
+        <Input type='text' value={this.state.title} onChange={this.setFieldValue.bind(this, 'title')} label='Title' />
+        <Input type='textarea' value={this.state.source} onChange={this.setFieldValue.bind(this, 'source')} label='Source' />
         <pre>
           {JSON.stringify(this.state, undefined, 2)}
         </pre>
         <input type='submit' />
-      </form>
+      </GenericForm>
     );
   }
 });
