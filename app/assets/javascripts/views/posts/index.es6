@@ -16,6 +16,7 @@ var Index = React.createClass({
       <div>
         <h1>Posts</h1>
         {posts}
+        <a href="/posts/new" className="btn btn-default">New Post</a>
       </div>
     );
   }

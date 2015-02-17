@@ -2,6 +2,7 @@ var bulk_require = require('bulk-require');
 var views = bulk_require(__dirname + '/views', ['./**/*.es6']);
 var Header = views.layouts.header;
 var Footer = views.layouts.footer;
+var App    = require('app');
 var url = require('url');
 
 var Router = React.createClass({
@@ -43,6 +44,7 @@ var Router = React.createClass({
 
     return (
       <div className='app'>
+        <App />
         <Header />
         <Route params={params} {...this.props} />
         <Footer />
